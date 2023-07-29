@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="check_internet_connections">Check Internet Connection</string>
+    <string name="ok">ok</string>
+    <string name="problem_in_network">Problem In Network</string>
+    <string name="try_again">Try Again</string>
+</resources>

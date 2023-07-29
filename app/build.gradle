@@ -1,0 +1,147 @@
+plugins {
+    id 'com.android.application'
+    id 'androidx.navigation.safeargs'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+
+}
+
+android {
+    namespace 'com.mohamed.sampleapp'
+    compileSdk AppConfig.compileSdk
+
+    defaultConfig {
+        applicationId "com.mohamed.sampleapp"
+
+        minSdk AppConfig.minSdk
+        targetSdk AppConfig.compileSdk
+        versionCode AppConfig.versionCode
+        versionName AppConfig.versionName
+
+        testInstrumentationRunner AppConfig.androidTestInstrumentation
+        consumerProguardFiles AppConfig.proguardConsumerRules
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+}
+
+dependencies {
+    implementation Libs.INSTANCE.coreExt
+    implementation Libs.INSTANCE.appCompat
+    implementation Libs.INSTANCE.material
+    implementation Libs.INSTANCE.constraintLayout
+
+    testImplementation TestLibs.INSTANCE.junit
+    androidTestImplementation TestLibs.INSTANCE.junitExt
+    androidTestImplementation TestLibs.INSTANCE.espresso
+
+
+    implementation Libs.INSTANCE.hiltAndroid
+    implementation Libs.INSTANCE.googleMap
+    implementation Libs.INSTANCE.maps_ktx
+    implementation Libs.INSTANCE.maps_utils_ktx
+    kapt Libs.INSTANCE.hiltAndroidCompiler
+
+    implementation Libs.INSTANCE.glide
+    implementation Libs.INSTANCE.locationServices
+
+
+//    implementation Libs.INSTANCE.Coroutines
+    // navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+
+    implementation "androidx.room:room-runtime:2.4.3"
+    implementation "androidx.room:room-ktx:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+
+
+    // network
+    implementation Libs.INSTANCE.retrofit
+    implementation Libs.INSTANCE.gson
+    implementation Libs.INSTANCE.okhttp3
+    implementation Libs.INSTANCE.gsonConverter
+    implementation Libs.INSTANCE.loggingInterceptor
+    //local data source
+    implementation Libs.INSTANCE.roomAndroid
+    kapt  Libs.INSTANCE.roomKapt
+
+
+    //trust lab
+
+//    implementation Libs.fragmentKtx
+//    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.0"
+//
+//
+//    // Retrofit and its adapters and converters
+//    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+//    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+//    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+//
+//
+//    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+//    implementation 'androidx.activity:activity-ktx:1.6.1'
+//
+//    //viewpager and indicator
+//    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+//    implementation "me.relex:circleindicator:2.1.6"
+//
+//    //shimmer
+//    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+//
+//    //glide
+//    implementation 'com.github.bumptech.glide:glide:4.12.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+//
+//    //swipe to refresh
+//    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+//
+//    implementation 'com.google.maps:google-maps-services:0.2.5'
+//    implementation 'com.google.android.libraries.places:places:2.6.0'
+//    implementation 'com.google.android.gms:play-services-places:17.0.0'
+//    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+//
+//    //phone code
+//    implementation 'com.hbb20:ccp:2.5.4'
+//
+//    //verification code
+//    implementation 'com.raycoarana.codeinputview:codeinputview:2.1.1'
+//
+//    implementation 'com.github.GrenderG:Toasty:1.5.2'
+//
+//    implementation 'com.airbnb.android:lottie:3.6.1'
+//    implementation 'com.mig35:carousellayoutmanager:1.4.6'
+//
+//    //circle imageview
+//    implementation 'com.subinkrishna:circularimageview:1.2.2'
+//
+//    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+
+    //swipe to refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+}

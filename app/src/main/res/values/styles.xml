@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Legacy Splash Screen Theme -->
+    <style name="LegacySplashTheme" parent="Theme.MyApplication">
+        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+</resources>
