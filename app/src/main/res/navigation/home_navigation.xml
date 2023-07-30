@@ -2,7 +2,40 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    app:startDestination="@id/category">
+
+    <fragment
+        android:id="@+id/category"
+        android:name="com.mohamed.sampleapp.presentation.categories.CategoryFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_category_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.mohamed.sampleapp.presentation.products.ProductsFragment"
+        android:label="{category}"
+        tools:layout="@layout/fragment_category">
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartProductsFragment"
+            app:destination="@id/cartProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartProductsFragment"
+        android:name="com.mohamed.sampleapp.presentation.cart.CartProductsFragment"
+        android:label="CartProductsFragment">
+        <action
+            android:id="@+id/action_cartProductsFragment_to_category"
+            app:destination="@id/category"
+            app:popUpTo="@id/category"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 
 </navigation>

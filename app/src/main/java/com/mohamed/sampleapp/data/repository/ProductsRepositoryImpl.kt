@@ -11,7 +11,21 @@ class ProductsRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : ProductsRepository {
-    override suspend fun getProductsByCategory(category: String)= remoteDataSource.getProductsByCategory(category)
+    override suspend fun getProductsByCategory(category: String): Resource<List<Product>> {
+        val cartList = localDataSource.getCartProducts().orEmpty()
+        val remoteProducts = remoteDataSource.getProductsByCategory(category)
+        if (remoteProducts is Resource.Success) {
+            cartList.forEach { localItem ->
+                remoteProducts.data.forEach { remoteItem ->
+                    if (remoteItem.id == localItem.id) {
+                        remoteItem.quantiy = localItem.quantiy
+                        remoteItem.isSelected = true
+                    }
+                }
+            }
+        }
+        return remoteProducts
+    }
 
     override suspend fun getCategories() = remoteDataSource.getCategories()
 
