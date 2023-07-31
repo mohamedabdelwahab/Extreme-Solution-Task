@@ -2,7 +2,7 @@ package com.mohamed.sampleapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.mohamed.sampleapp.data.source.local.FavoritesRoomDB
+import com.mohamed.sampleapp.data.source.local.ProductsRoomDB
 import com.mohamed.sampleapp.data.source.local.ProductDAO
 import dagger.Module
 import dagger.Provides
@@ -17,15 +17,15 @@ object RoomDBModule {
 
     @Provides
     @Singleton
-    fun provideFavoritesRoomDB(@ApplicationContext appContext: Context): FavoritesRoomDB =
+    fun provideFavoritesRoomDB(@ApplicationContext appContext: Context): ProductsRoomDB =
         Room.databaseBuilder(
             appContext,
-            FavoritesRoomDB::class.java,
+            ProductsRoomDB::class.java,
             "favorites_database.db"
         ).fallbackToDestructiveMigration().build()
 
     @Provides
     @Singleton
-    fun provideProductFavoriteDAO(favoritesRoomDB: FavoritesRoomDB): ProductDAO =
-        favoritesRoomDB.productFavoriteDAO()
+    fun provideProductFavoriteDAO(productsRoomDB: ProductsRoomDB): ProductDAO =
+        productsRoomDB.productFavoriteDAO()
 }
