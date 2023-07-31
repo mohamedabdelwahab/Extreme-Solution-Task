@@ -6,5 +6,5 @@ import com.mohamed.sampleapp.data.source.remote.reposnse.Product
 
 @Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class ProductsRoomDB : RoomDatabase() {
-    abstract fun productFavoriteDAO(): ProductDAO
+    abstract fun productDAO(): ProductDAO
 }

@@ -21,11 +21,11 @@ object RoomDBModule {
         Room.databaseBuilder(
             appContext,
             ProductsRoomDB::class.java,
-            "favorites_database.db"
+            "products_database.db"
         ).fallbackToDestructiveMigration().build()
 
     @Provides
     @Singleton
     fun provideProductFavoriteDAO(productsRoomDB: ProductsRoomDB): ProductDAO =
-        productsRoomDB.productFavoriteDAO()
+        productsRoomDB.productDAO()
 }

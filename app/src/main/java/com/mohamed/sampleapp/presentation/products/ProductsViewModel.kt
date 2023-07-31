@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
-    private val getCartUseCase: GetCartProductsUseCase,
     private val getProductsUseCase: GetProductsUseCase,
+    private val getCartUseCase: GetCartProductsUseCase,
     private val addProductUseCase: AddProductUseCase,
     private val updateProductUseCase: UpdateProductUseCase,
     private val removeProductUseCase: RemoveProductUseCase,
