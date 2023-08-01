@@ -12,12 +12,15 @@ import com.mohamed.sampleapp.data.source.local.ProductsRoomDB
 import com.mohamed.sampleapp.data.source.remote.reposnse.Product
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.Assert.assertEquals
 import org.junit.rules.ExpectedException
 import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
+@RunWith(AndroidJUnit4::class) // Annotate with @RunWith
 class ProductsRoomRepositoryTest {
     @get:Rule
     val testRule = InstantTaskExecutorRule()
@@ -74,7 +77,7 @@ class ProductsRoomRepositoryTest {
 
         val actual = repo.getCartProducts()
 
-        assertEquals(1, actual)
+        assertEquals(1, actual?.size)
 
         Assert.assertTrue(actual?.contains(product) == false)
 

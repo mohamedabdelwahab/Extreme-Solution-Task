@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.mohamed.sampleapp.R
 import com.mohamed.sampleapp.core.common.delegate.viewBinding
 import com.mohamed.sampleapp.core.extensions.gone
-import com.mohamed.sampleapp.core.extensions.hide
 import com.mohamed.sampleapp.core.extensions.show
 import com.mohamed.sampleapp.core.extensions.showErrorMessage
 import com.mohamed.sampleapp.core.utilities.networkUtils.Failure
@@ -52,26 +51,12 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
+        addListners()
+        observeLiveData()
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-                    productsViewModel.searchProducts(it)
-                }
-                return false
-            }
-        })
+    }
 
-        binding.addedItems.setOnClickListener {
-            findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToCartProductsFragment())
-        }
-        binding.error.btnTryAgain.setOnClickListener {
-            productsViewModel.getProducts(args.category)
-        }
-
+    private fun observeLiveData() {
         productsViewModel.cartProducts.observe(viewLifecycleOwner) {
             (activity as MainActivity).updateCartNumber()
             if (it.isEmpty()) {
@@ -102,6 +87,27 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
                     binding.progressBar.show()
                 }
             }
+        }
+    }
+
+    private fun addListners() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    productsViewModel.searchProducts(it)
+                }
+                return false
+            }
+        })
+        binding.addedItems.setOnClickListener {
+            findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToCartProductsFragment())
+        }
+        binding.error.btnTryAgain.setOnClickListener {
+            productsViewModel.getProducts(args.category)
         }
     }
 

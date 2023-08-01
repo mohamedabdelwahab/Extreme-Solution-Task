@@ -31,6 +31,12 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        addListners()
+        observeLiveData()
+
+    }
+
+    private fun addListners() {
         binding.error.btnTryAgain.setOnClickListener {
             categoryProductsViewModel.getCategories()
         }
@@ -52,6 +58,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
                 })
         )
+    }
+
+    private fun observeLiveData() {
         categoryProductsViewModel.categories.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {

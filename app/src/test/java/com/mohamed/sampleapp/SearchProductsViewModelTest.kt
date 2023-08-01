@@ -13,6 +13,7 @@ import com.nhaarman.mockitokotlin2.mock
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
@@ -34,7 +35,7 @@ class SearchProductsViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
-    fun setup() = runTest {
+    fun setup() = runBlocking {
         val repository: ProductsRepository = mock(verboseLogging = true)
         Mockito.`when`(repository.getProductsByCategory(""))
             .thenReturn(
@@ -52,7 +53,7 @@ class SearchProductsViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun test_searchListAllExist() = runTest {
+    fun test_searchListAllExist() = runBlocking {
         viewModel.getProducts("")
         viewModel.searchProducts("title")
         val todos = (viewModel.searchProducts.value as Resource.Success).data
@@ -62,7 +63,7 @@ class SearchProductsViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun test_searchListOneExist() = runTest {
+    fun test_searchListOneExist() = runBlocking {
         viewModel.getProducts("")
         viewModel.searchProducts("title2")
 
@@ -73,7 +74,7 @@ class SearchProductsViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun test_searchListNotExist() = runTest {
+    fun test_searchListNotExist() = runBlocking {
         viewModel.getProducts("")
         viewModel.searchProducts("fake")
 
